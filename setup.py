@@ -1,4 +1,4 @@
-# pyrateoptics setup.py
+# tooptix setup.py
 from distutils.core import setup
 setup(
       name="tooptixworkbench",
