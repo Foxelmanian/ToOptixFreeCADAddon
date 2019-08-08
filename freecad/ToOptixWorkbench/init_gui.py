@@ -14,6 +14,8 @@ Err = FreeCAD.Console.PrintError
 # access to the resource file
 # from freecad.ToOptixWorkbench import resources_rc
 
+from freecad.ToOptixWorkbench import Commands_ToOptix
+
 
 class ToOptixWorkbench(FreeCADGui.Workbench):
     """

@@ -2,7 +2,7 @@
 from distutils.core import setup
 setup(
       name="tooptixworkbench",
-      packages=["ToOptix",
+      packages=[
                 "freecad",
                 "freecad/ToOptixWorkbench"],
       include_package_data=True,
