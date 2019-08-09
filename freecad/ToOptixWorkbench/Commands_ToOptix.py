@@ -12,7 +12,7 @@ class PerformToOptixCommand:
         return {"MenuText": "Topology Optimization",
                 "Accel": "",
                 "ToolTip": "Performs topology optimization",
-                "Pixmap": ":/icons/bla.svg"
+                "Pixmap": ":/icons/to.svg"
                 }
 
     def IsActive(self):
@@ -24,5 +24,5 @@ class PerformToOptixCommand:
     def Activated(self):
         pass
 
-print("command to be added")
+
 FreeCADGui.addCommand('PerformToOptixCommand', PerformToOptixCommand())

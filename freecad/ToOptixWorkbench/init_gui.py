@@ -12,8 +12,8 @@ Log = FreeCAD.Console.PrintLog
 Err = FreeCAD.Console.PrintError
 
 # access to the resource file
-# from freecad.ToOptixWorkbench import resources_rc
 
+from freecad.ToOptixWorkbench import resources_rc
 from freecad.ToOptixWorkbench import Commands_ToOptix
 
 
@@ -22,7 +22,7 @@ class ToOptixWorkbench(FreeCADGui.Workbench):
     A FreeCAD workbench for topology optimization.
     """
 
-    Icon = ":/icons/blub.svg"
+    Icon = ":/icons/to.svg"
 
     MenuText = "Topology Optimization (ToOptix)"
     ToolTip = "Topology Optimization with Python and Calculix"
