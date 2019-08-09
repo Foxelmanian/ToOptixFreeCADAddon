@@ -52,7 +52,7 @@ class PerformToOptixCommand:
         cpus = 3
         files = [inp_path]
         sol_type = ["static"]
-        opti_type = ["seperated"]
+        opti_type = "seperated"
         max_iterations = 100
         penal = 3.0
         vol_frac = 0.4
