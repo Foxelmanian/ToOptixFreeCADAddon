@@ -4,7 +4,11 @@ setup(
       name="tooptixworkbench",
       packages=[
                 "freecad",
-                "freecad/ToOptixWorkbench"],
+                "freecad/ToOptixWorkbench",
+                "ToOptixCore",
+                "ToOptixCore/TopologyOptimizer",
+                "ToOptixCore/TopologyOptimizer/FEMPy"
+                ],
       include_package_data=True,
       install_requires=["numpy",
                         "scipy",
