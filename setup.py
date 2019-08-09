@@ -7,7 +7,8 @@ setup(
                 "freecad/ToOptixWorkbench",
                 "ToOptixCore",
                 "ToOptixCore/TopologyOptimizer",
-                "ToOptixCore/TopologyOptimizer/FEMPy"
+                "ToOptixCore/TopologyOptimizer/FEMPy",
+                "ToOptixCore/TopologyOptimizer/FEMPy/Geometry"
                 ],
       include_package_data=True,
       install_requires=["numpy",

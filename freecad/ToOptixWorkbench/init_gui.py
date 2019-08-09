@@ -2,7 +2,7 @@
 
 # import platform
 # import os
-# import sys
+import sys
 
 import FreeCAD
 import FreeCADGui
@@ -13,7 +13,11 @@ Err = FreeCAD.Console.PrintError
 
 # access to the resource file
 
-from freecad.ToOptixWorkbench import resources_rc
+if sys.version_info.major > 2:
+    from freecad.ToOptixWorkbench import resources_rc_3
+else:
+    from freecad.ToOptixWorkbench import resources_rc_2
+
 from freecad.ToOptixWorkbench import Commands_ToOptix
 
 
