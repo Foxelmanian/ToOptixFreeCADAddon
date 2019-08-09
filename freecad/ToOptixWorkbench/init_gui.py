@@ -28,7 +28,7 @@ class ToOptixWorkbench(FreeCADGui.Workbench):
     ToolTip = "Topology Optimization with Python and Calculix"
 
     def GetClassName(self):
-        return "Gui::ToOptixWorkbench"
+        return "Gui::PythonWorkbench"
 
     def Initialize(self):
         self.appendToolbar("ToOptix",

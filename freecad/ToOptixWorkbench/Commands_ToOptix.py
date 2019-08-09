@@ -22,7 +22,6 @@ class PerformToOptixCommand:
             return True
 
     def Activated(self):
-
         pass
 
 print("command to be added")
