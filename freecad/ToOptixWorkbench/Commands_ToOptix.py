@@ -8,7 +8,7 @@ import FreeCAD
 import FreeCADGui
 
 from femtools import ccxtools
-from ToOptixCore.TopologyOptimizer.OptimizationController import OptimizationController
+from ToOptix.OptimizationController import OptimizationController
 
 Msg = FreeCAD.Console.PrintMessage
 Log = FreeCAD.Console.PrintLog
@@ -40,13 +40,17 @@ class PerformToOptixCommand:
         fea = ccxtools.FemToolsCcx()
         fea.update_objects()
         message = fea.check_prerequisites()
+        Log("FEA.check_prerequisites messages\n")
         Log(message)
 
         fea.write_inp_file()
         ccx_path = fea.__dict__['ccx_binary']
         inp_path = fea.__dict__['inp_file_name']
+        Log("Show fea.__dict__:\n")
+        Log("------------------")
         for (key, val) in fea.__dict__.items():
             Log(key + ": " + str(val) + "\n")
+        Log("INP Path:\n")
         Log(inp_path)
 
         cpus = 3
