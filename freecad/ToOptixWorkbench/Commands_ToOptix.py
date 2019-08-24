@@ -8,7 +8,7 @@ import FreeCAD
 import FreeCADGui
 
 from femtools import ccxtools
-from ToOptixCore.TopologyOptimizer.OptimizationController import OptimizationController
+from ToOptix.OptimizationController import OptimizationController
 
 Msg = FreeCAD.Console.PrintMessage
 Log = FreeCAD.Console.PrintLog

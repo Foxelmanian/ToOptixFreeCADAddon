@@ -7,11 +7,9 @@ setup(
                 "freecad/ToOptixWorkbench",
                 ],
       include_package_data=True,
-      install_requires=["numpy",
-                        "scipy",
-                        "matplotlib",
-                        "sympy",
-                        "pyyaml"],
+      install_requires=["numpy==1.16.3",  # To maintain Python 2.7 compatibility 
+                        "scipy==1.2.1"  # To maintain Python 2.7 compatibility
+                        ],
       version="0.0.1",
       description="Topology Optimization with FreeCAD",
       author="DMST1990",
@@ -28,6 +26,7 @@ setup(
           "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
           "Operating System :: OS Independent",
           "Programming Language :: Python",
+          "Programming Language :: Python :: 2.7",
           "Programming Language :: Python :: 3.5",
           "Programming Language :: Python :: 3.6",
           "Programming Language :: Python :: 3.7",
