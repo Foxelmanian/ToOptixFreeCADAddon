@@ -9,6 +9,7 @@ import FreeCADGui
 
 from femtools import ccxtools
 from ToOptix.OptimizationController import OptimizationController
+from TaskPanel_ToOptix_Start import TaskPanelToOptixStart
 
 Msg = FreeCAD.Console.PrintMessage
 Log = FreeCAD.Console.PrintLog
@@ -42,6 +43,10 @@ class PerformToOptixCommand:
         message = fea.check_prerequisites()
         Log("FEA.check_prerequisites messages\n")
         Log(message)
+        taskpanel = TaskPanelToOptixStart(fea)
+        FreeCADGui.Control.showDialog(taskpanel)
+        return
+        # rest should be done by the panel
 
         fea.write_inp_file()
         ccx_path = fea.__dict__['ccx_binary']

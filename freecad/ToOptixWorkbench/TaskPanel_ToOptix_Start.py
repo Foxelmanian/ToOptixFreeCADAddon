@@ -10,7 +10,7 @@ class TaskPanelToOptixStart:
     """
     User interface to start ToOptix optimization process.
     """
-    def getRelativeFilePath(relativefilename, targetfile):
+    def getRelativeFilePath(self, relativefilename, targetfile):
         return os.path.join(os.path.dirname(relativefilename), targetfile)
 
     def __init__(self, analysis):
@@ -21,9 +21,9 @@ class TaskPanelToOptixStart:
                                             'Qt/dlg_tooptix_start.ui')
         # this will create a Qt widget from our ui file
         self.form = FreeCADGui.PySideUic.loadUi(filename)
-        self.form.lineEdit_kind.setText("kind")
-        self.form.lineEdit_name.setText("name")
-        self.form.lineEdit_unique_id.setText("id")
+        #self.form.lineEdit_kind.setText("kind")
+        #self.form.lineEdit_name.setText("name")
+        #self.form.lineEdit_unique_id.setText("id")
 
     def accept(self):
         FreeCADGui.Control.closeDialog()
