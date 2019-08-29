@@ -43,6 +43,9 @@ class PerformToOptixCommand:
         message = fea.check_prerequisites()
         Log("FEA.check_prerequisites messages\n")
 
+        fem_prefs = FreeCAD.ParamGet("User parameter:BaseApp/Preferences/Mod/Fem/Gmsh")
+        fem_ccx_binary_path = fem_prefs.GetString("GmshAdditionalArguments").split()
+
         preferences = {}
         preferences["ccx_binary_path"] = "/usr/bin/ccx"  # get from FEM prefs
 
