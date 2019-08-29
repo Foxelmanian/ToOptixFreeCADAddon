@@ -13,7 +13,7 @@ class TaskPanelToOptixStart:
     def getRelativeFilePath(self, relativefilename, targetfile):
         return os.path.join(os.path.dirname(relativefilename), targetfile)
 
-    def __init__(self, analysis):
+    def __init__(self, analysis, msgstring, preferences_dict):
         # doc needs to be initialized first
         # self.doc = doc
 
@@ -21,8 +21,8 @@ class TaskPanelToOptixStart:
                                             'Qt/dlg_tooptix_start.ui')
         # this will create a Qt widget from our ui file
         self.form = FreeCADGui.PySideUic.loadUi(filename)
-        #self.form.lineEdit_kind.setText("kind")
-        #self.form.lineEdit_name.setText("name")
+        self.form.textedit_fea_message.setText(msgstring)
+        self.form.lineedit_ccx_binary.setText(preferences_dict.get("ccx_binary_path", ""))
         #self.form.lineEdit_unique_id.setText("id")
 
     def accept(self):

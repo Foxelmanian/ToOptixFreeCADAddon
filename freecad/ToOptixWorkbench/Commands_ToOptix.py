@@ -42,9 +42,13 @@ class PerformToOptixCommand:
         fea.update_objects()
         message = fea.check_prerequisites()
         Log("FEA.check_prerequisites messages\n")
-        Log(message)
-        taskpanel = TaskPanelToOptixStart(fea)
+
+        preferences = {}
+        preferences["ccx_binary_path"] = "/usr/bin/ccx"  # get from FEM prefs
+
+        taskpanel = TaskPanelToOptixStart(fea, message, preferences)
         FreeCADGui.Control.showDialog(taskpanel)
+        print(taskpanel.form.textedit_fea_message.toPlainText())
         return
         # rest should be done by the panel
 
