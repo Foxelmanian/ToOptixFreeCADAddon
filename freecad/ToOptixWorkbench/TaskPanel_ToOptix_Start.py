@@ -1,9 +1,17 @@
 #!/usr/bin/env/python
 import os
 
-import FreeCADGui
-from PySide.QtGui import QTableWidgetItem, QHeaderView
+from PySide.QtGui import QFileDialog, QTableWidgetItem, QHeaderView
 from PySide.QtCore import Qt
+
+import FreeCAD
+import FreeCADGui
+
+from ToOptix.OptimizationController import OptimizationController
+
+Msg = FreeCAD.Console.PrintMessage
+Log = FreeCAD.Console.PrintLog
+Err = FreeCAD.Console.PrintError
 
 
 class TaskPanelToOptixStart:
@@ -16,17 +24,79 @@ class TaskPanelToOptixStart:
     def __init__(self, analysis, msgstring, preferences_dict):
         # doc needs to be initialized first
         # self.doc = doc
-
+        self.fea = analysis
         filename = self.getRelativeFilePath(__file__,
                                             'Qt/dlg_tooptix_start.ui')
         # this will create a Qt widget from our ui file
         self.form = FreeCADGui.PySideUic.loadUi(filename)
         self.form.textedit_fea_message.setText(msgstring)
-        self.form.lineedit_ccx_binary.setText(preferences_dict.get("ccx_binary_path", ""))
-        #self.form.lineEdit_unique_id.setText("id")
+        self.form.lineedit_ccx_binary.setText(
+                preferences_dict.get("ccx_binary_path", ""))
+        self.form.lineedit_working_directory.setText(
+                preferences_dict.get("working_directory", ""))
+
+        self.form.pushbutton_working_directory.clicked.connect(
+                self.click_pushbutton_working_directory)
+        self.form.pushbutton_ccx_binary.clicked.connect(
+                self.click_pushbutton_ccx_binary)
+
+    def click_pushbutton_working_directory(self):
+        dirname = QFileDialog.getExistingDirectory(None, "", "")
+        if dirname != "":
+            self.form.lineedit_working_directory.setText(dirname)
+
+    def click_pushbutton_ccx_binary(self):
+        (filename, res) = QFileDialog.getOpenFileName(None, "", "")
+        if filename != "":
+            self.form.lineedit_ccx_binary.setText(filename)
 
     def accept(self):
         FreeCADGui.Control.closeDialog()
+
+        self.fea.write_inp_file()
+        working_dir = self.form.lineedit_working_directory.text()
+        ccx_path = self.form.lineedit_ccx_binary.text()
+        inp_path = self.fea.inp_file_name
+
+        Log("Show fea.__dict__:\n")
+        Log("------------------")
+        for (key, val) in self.fea.__dict__.items():
+            Log(key + ": " + str(val) + "\n")
+        Log("INP Path:\n")
+        Log(inp_path)
+
+        cpus = 3
+        files = [inp_path]
+        sol_type = ["static"]
+        opti_type = "seperated"
+        max_iterations = 100
+        penal = 3.0
+        vol_frac = 0.4
+        matSets = 20
+        weight_factors = [1.0]
+        workDir = working_dir
+        solverPath = ccx_path
+        no_design_set = "SolidMaterial001Solid"
+
+        os.environ['OMP_NUM_THREADS'] = str(cpus)
+        opti_controller = OptimizationController(files,
+                                                 sol_type,
+                                                 reverse=False,
+                                                 type=opti_type)
+        opti_controller.set_maximum_iterations(max_iterations)
+        opti_controller.set_penalty_exponent(penal)
+        opti_controller.set_number_of_material_sets(matSets)
+        opti_controller.set_solver_path(solverPath)
+        opti_controller.set_weight_factors(weight_factors)
+        opti_controller.plot_only_last_result(False)
+
+        # Start the optimization
+        opti_controller.set_result_file_name('stl_result' +
+                                             str(vol_frac) + "__")
+        opti_controller.set_result_path(workDir)
+        opti_controller.set_volumina_ratio(vol_frac)
+        opti_controller.set_no_design_element_set(no_design_set)
+        opti_controller.run()
 
     def reject(self):
         FreeCADGui.Control.closeDialog()
