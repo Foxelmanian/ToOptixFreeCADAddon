@@ -58,18 +58,11 @@ class TaskPanelToOptixStart:
         ccx_path = self.form.lineedit_ccx_binary.text()
         inp_path = self.fea.inp_file_name
 
-        Log("Show fea.__dict__:\n")
-        Log("------------------")
-        for (key, val) in self.fea.__dict__.items():
-            Log(key + ": " + str(val) + "\n")
-        Log("INP Path:\n")
-        Log(inp_path)
-
-        cpus = 3
+        cpus = self.form.spinbox_cpus.value()
         files = [inp_path]
         sol_type = ["static"]
         opti_type = "seperated"
-        max_iterations = 100
+        max_iterations = self.form.spinbox_iterations.value()
         penal = 3.0
         vol_frac = 0.4
         matSets = 20
