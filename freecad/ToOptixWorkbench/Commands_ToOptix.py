@@ -6,7 +6,7 @@ import FreeCAD
 import FreeCADGui
 
 from femtools import ccxtools
-from TaskPanel_ToOptix_Start import TaskPanelToOptixStart
+from .TaskPanel_ToOptix_Start import TaskPanelToOptixStart
 
 
 class PerformToOptixCommand:
