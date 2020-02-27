@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 
-# Macro Begin: C:\Users\Denk\Desktop\TestExample.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++
+
 import sys
 import os
 import subprocess
 import json
 
-python3_path = os.path.join("C:\\", "Users", "Denk", 'AppData','Local', 'Programs','Python', 'Python36','python.exe')
-installation_path = os.path.join("C:\\", "Users", "Denk", 'Downloads', 'ToOptixUpdate-master', 'ToOptixUpdate-master', 'ToOptix_FreeCADAddon')
+python3_path = # Enter python path
+installation_path = # Enter addon path
 
 import FreeCAD
 import Part
