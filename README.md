@@ -20,6 +20,7 @@
 - Static load case
 - Material will change only in young module and conductivity
 - Filter selects only the element around the filter object
+- TESTED on VERSION 0.16 in FreeCAD Faild in Version >0.17
 
 ## Installation
 - Install python 3.xx
