@@ -7,7 +7,7 @@ setup(
                 "freecad/ToOptixWorkbench",
                 ],
       include_package_data=True,
-      install_requires=["numpy==1.16.3",  # To maintain Python 2.7 compatibility 
+      install_requires=["numpy==1.22.0",  # To maintain Python 2.7 compatibility 
                         "scipy==1.2.1"  # To maintain Python 2.7 compatibility
                         ],
       version="0.0.1",
